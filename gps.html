@@ -1,0 +1,37 @@
+Display current GPS coordinates
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name=viewport content="user-scalable=no,width=device-width" />
+    <link rel=stylesheet href=jquery.mobile/jquery.mobile.css />
+    <script src=jquery.js></script>
+    <script src=jquery.mobile/jquery.mobile.js></script>
+</head>
+
+<body>
+
+<div data-role=page id=home>
+    <div data-role=header>
+        <h1>Home</h1>
+    </div>
+
+    <div data-role=content>
+        <span> Latitude : </span> <span id=lat></span> <br />
+        <span> Longitude : </span> <span id=lng></span> <br />
+    </div>
+</div>
+
+</body>
+</html>
+
+<script>
+
+    navigator.geolocation.getCurrentPosition (function (pos)
+    {
+        var lat = pos.coords.latitude;
+        var lng = pos.coords.longitude;
+        $("#lat").text (lat);
+        $("#lng").text (lng);
+    });
+
+</script>
