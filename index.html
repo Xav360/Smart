@@ -17,13 +17,20 @@
     <div data-role="header">
         <h1>Votre trajet</h1>
     </div><!-- /header -->
+
     <div data-role="fieldcontain">
-        <label for="name">Adresse de depart </label>
+        <label for="name">  Adresse de depart </label>
         <input type="text" name="name" id="name" value=""  />
     </div>
 
+    <div data-role="content">
+        <div data-role="controlgroup">
+            <a href="#gps" data-role="button" data-icon="" data-transition="flip">mes coordonnees</a>
+        </div>
+    </div>
+
     <div data-role="fieldcontain">
-        <label for="name">Adresse d'arrivee </label>
+        <label for="name">  Adresse d'arrivee </label>
         <input type="text" name="name" id="name2" value=""  />
     </div>
 
@@ -31,6 +38,7 @@
         <div data-role="controlgroup">
 
             <a href="#carte" data-role="button" data-icon="" data-transition="flip">Valider</a>
+
         </div>
     </div><!-- /content -->
 </div>
@@ -40,11 +48,37 @@
     </div>
 
     <div data-role="content">
-         <div id="map" style="width:100%; width: 100%; height: 100%; padding: 0; ">
+         <div id="map" style="width:100%; height: 600px; padding: 0; ">
         </div>
     </div>
+
 </div>
 
+<div data-role="page" id="gps">
+    <div data-role="header">
+        <h1>Ma position</h1>
+    </div>
+
+    <div data-role="content">
+        <span> Latitude : </span> <span id=lat></span> <br />
+        <span> Longitude : </span> <span id=lng></span> <br />
+    </div>
+</div>
+</div>
+</body>
+</html>
+
+<script>
+
+    navigator.geolocation.getCurrentPosition (function (pos)
+    {
+        var lat = pos.coords.latitude;
+        var lng = pos.coords.longitude;
+        $("#lat").text (lat);
+        $("#lng").text (lng);
+    });
+
+</script>
 
 <script type="text/javascript">
 
@@ -52,7 +86,7 @@
         console.log("init carte google");
         var myOptions = {
             center: new google.maps.LatLng(48.8566140, 2.3522219),
-            zoom: 14,
+            zoom: 16,
             mapTypeId: google.maps.MapTypeId.ROADMAP
         };
         map = new google.maps.Map(document.getElementById("map"),myOptions);
@@ -63,8 +97,6 @@
     });
 </script>
 
-</body>
-</html>
 
 
 
