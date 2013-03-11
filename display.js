@@ -35,6 +35,7 @@ function display(json) {
 
 function submitform()
 {//this check triggers the validations
+    var URL="";
     codeAddress(URL, $("#name").val(), 1, addToUrl);
 };
 
