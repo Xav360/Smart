@@ -36,8 +36,8 @@ function display(json) {
 function submitform()
 {//this check triggers the validations
     var URL="";
-    codeAddress(URL, $("#name").val(), 1, addToUrl);
-};
+    codeAddress(URL, $("#adr1").val(), 1, addToUrl);
+}
 
 function addToUrl(index, point) {
     var url="http://"+document.getElementById("ip").value+":8080/rest/routing?&lat"+index+"="+point.lat()+"&lon"+index+"="+point.lng();
@@ -68,7 +68,7 @@ function codeAddress(URL, address, index, callback) {
         if (status == google.maps.GeocoderStatus.OK){
             if(index==1) {
                 var url=callback.call(window, index, results[0].geometry.location);
-                codeAddress(url,$("#name2").val(),2,redirect);
+                codeAddress(url,$("#adr2").val(),2,redirect);
             }
             else {
                 callback.call(window, URL, index, results[0].geometry.location);
