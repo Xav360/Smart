@@ -7,97 +7,65 @@
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
     <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
     <script src="http://code.jquery.com/mobile/1.3.0/jquery.mobile-1.3.0.min.js"></script>
+    <script type="text/javascript" src="displayPath.js"></script>
     <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.0/jquery.mobile-1.3.0.min.css" />
     <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAFRibImU7l2cmjIPF4S0yJ8r7YkxLeOHA&sensor=true"></script>
+
+    <script type="text/javascript">
+        var map;
+
+        function initialize() {
+
+            console.log("init carte google");
+
+            var myOptions = {
+                center: new google.maps.LatLng(48.8566140, 2.3522219),
+                zoom: 16,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+
+            map = new google.maps.Map(document.getElementById("carte"),myOptions);
+        }
+        $('#carte').live('pageshow',function(event, ui){
+            initialize();
+            submitform();
+        });
+    </script>
+
 </head>
 <body>
 
 <div data-role="page" data-theme="a" id="accueil">
-
     <div data-role="header">
         <h1>Votre trajet</h1>
     </div><!-- /header -->
 
     <div data-role="fieldcontain">
-        <label for="name">  Adresse de depart </label>
-        <input type="text" name="name" id="name" value=""  />
+        <label for="name">Ip Serveur</label>
+        <input type="text" name="ip" id="ip" value=""  placeholder="ip"/>
+    </div>
+
+    <div data-role="fieldcontain">
+        <label for="name">Adresse de depart</label>
+        <input type="text" name="name" id="name" value=""  placeholder="Départ"/>
     </div>
 
     <div data-role="content">
         <div data-role="controlgroup">
-            <a href="#gps" data-role="button" data-icon="" data-transition="flip">mes coordonnees</a>
+            <a href="gpsTest.html" data-role="button" data-icon="" data-transition="flip">Mes coordonnees</a>
         </div>
     </div>
 
     <div data-role="fieldcontain">
-        <label for="name">  Adresse d'arrivee </label>
-        <input type="text" name="name" id="name2" value=""  />
+        <label for="name">Adresse d'arrivee</label>
+        <input type="text" name="name" id="name2" value=""  placeholder="Arrivée"/>
     </div>
 
     <div data-role="content">
         <div data-role="controlgroup">
-
-            <a href="#carte" data-role="button" data-icon="" data-transition="flip">Valider</a>
-
+            <a href="map.html" data-role="button" data-icon="" data-transition="flip">Valider</a>
         </div>
     </div><!-- /content -->
 </div>
-<div data-role="page" data-theme="a" id="carte">
-    <div data-role="header">
-        <h1>Map</h1>
-    </div>
-
-    <div data-role="content">
-         <div id="map" style="width:100%; height: 600px; padding: 0; ">
-        </div>
-    </div>
-
-</div>
-
-<div data-role="page" id="gps">
-    <div data-role="header">
-        <h1>Ma position</h1>
-    </div>
-
-    <div data-role="content">
-        <span> Latitude : </span> <span id=lat></span> <br />
-        <span> Longitude : </span> <span id=lng></span> <br />
-    </div>
-</div>
-</div>
 </body>
 </html>
-
-<script>
-
-    navigator.geolocation.getCurrentPosition (function (pos)
-    {
-        var lat = pos.coords.latitude;
-        var lng = pos.coords.longitude;
-        $("#lat").text (lat);
-        $("#lng").text (lng);
-    });
-
-</script>
-
-<script type="text/javascript">
-
-    function initialize() {
-        console.log("init carte google");
-        var myOptions = {
-            center: new google.maps.LatLng(48.8566140, 2.3522219),
-            zoom: 16,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-        map = new google.maps.Map(document.getElementById("map"),myOptions);
-    }
-
-    $('#carte').live('pageshow',function(event, ui){
-        initialize();
-    });
-</script>
-
-
-
-
-
