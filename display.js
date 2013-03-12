@@ -30,8 +30,6 @@ function display(json) {
     ]);
 
     L.polyline(edges, {color: 'red'}).addTo(map);
-
-    //map.setCenter(Center);
 }
 
 function submitform()
