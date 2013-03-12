@@ -5,11 +5,16 @@
     <title>Smart Mobility</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+
+    <link rel="stylesheet" href="index.css" />
+
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.css" />
+    <script src="http://cdn.leafletjs.com/leaflet-0.5/leaflet.js"></script>
+
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.0/jquery.mobile-1.3.0.min.css" />
     <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
     <script src="http://code.jquery.com/mobile/1.3.0/jquery.mobile-1.3.0.min.js"></script>
-    <script type="text/javascript" src="display.js"></script>
-    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.0/jquery.mobile-1.3.0.min.css" />
-    <link rel="stylesheet" href="index.css" />
+
     <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAFRibImU7l2cmjIPF4S0yJ8r7YkxLeOHA&sensor=true"></script>
 
     <script type="text/javascript">
@@ -17,23 +22,33 @@
 
         function initialize() {
 
-            console.log("init carte google");
+            map = new L.Map('map_canvas');
 
-            var myOptions = {
-                center: new google.maps.LatLng(48.8566140, 2.3522219),
-                zoom: 16,
-                mapTypeId: google.maps.MapTypeId.ROADMAP
-            };
+            // create the tile layer with correct attribution
+            var mapquestUrl = 'http://{s}.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png';
+            //var osmUrl='http://{s}.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/997/256/{z}/{x}/{y}.png';
+            //var osmAttrib='';
+            var subDomains = ['otile1','otile2','otile3','otile4'];
+            var mapquestAttrib = '';
+            var mapquest = new L.TileLayer(mapquestUrl, {maxZoom: 18, attribution: mapquestAttrib, subdomains: subDomains});
+            //var osm = new L.TileLayer(osmUrl, {minZoom: 8, maxZoom: 12, attribution: osmAttrib});
 
-            map = new google.maps.Map(document.getElementById("carte"),myOptions);
+            // start the map in South-East England
+            map.setView(new L.LatLng(47.3, 2.47),8);
+            map.addLayer(mapquest);
         }
 
         $('#carte').live('pageshow',function(event, ui){
             initialize();
-            submitform();
+            //submitform();
         });
 
-
+        function addAdr1() {
+            $("#adr1").val("26, rue pierre louvrier, clamart");
+        };
+        function addAdr2() {
+            $("#adr2").val("8, résidence de la lisière du golf, garches");
+        };
 
     </script>
 
@@ -53,14 +68,14 @@
         <div data-role="controlgroup" data-type="horizontal" data-inline="true" style="display: inline; width:50%;">
             <input type="text" name="adr1" id="adr1" value="" placeholder="Adresse de Départ"/>
         </div>
-        <button id="adr1Button"  data-icon="arrow-r" data-inline="true" data-iconpos="notext" data-theme="c">plus</button>
+        <button id="adr1Button"  data-icon="arrow-r" data-inline="true" data-iconpos="notext" data-theme="c" onclick="addAdr1()">plus</button>
     </div>
 
     <div data-role="fieldcontain" data-type="horizontal">
         <div data-role="controlgroup" data-type="horizontal" data-inline="true" style="display: inline; width:50%;">
             <input type="text" name="adr2" id="adr2" value="" placeholder="Adresse d'Arrivée"/>
         </div>
-        <button id="adr2Button" data-icon="arrow-r" data-inline="true" data-iconpos="notext" data-theme="c">plus</button>
+        <button id="adr2Button" data-icon="arrow-r" data-inline="true" data-iconpos="notext" data-theme="c" onclick="addAdr2()">plus</button>
     </div>
 
     <fieldset id="transportButtons"  data-role="controlgroup" data-type="horizontal">
@@ -72,20 +87,10 @@
         <input type="radio" id="trans_choice_cycle"  name="trans"/>
     </fieldset>
 
-    <div data-role="content">
         <div data-role="controlgroup">
             <a href="map.html" data-role="button" data-icon="" data-transition="flip">Valider</a>
         </div>
-    </div><!-- /content -->
 </div>
 </body>
-<script>
-    $('#adr1Button').click(function() {
-        $("#adr1").val("26, rue pierre louvrier, clamart");
-    });
-
-    $('#adr2Button').click(function() {
-        $("#adr2").val("8, résidence de la lisière du golf, garches");
-    });
-</script>
 </html>
+
