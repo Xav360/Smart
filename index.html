@@ -33,7 +33,7 @@
             }
         }
 
-        var watchID = navigator.geolocation.watchPosition(successCallback, errorCallback, {enableHighAccuracy:true});
+        var watchID = navigator.geolocation.watchPosition(successCallback, errorCallback, {frequency:1000, enableHighAccuracy:true});
 
         function initialize() {
 
