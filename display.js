@@ -6,7 +6,14 @@ var map;
 var edgePath;
 
 function display(json) {
-    var edge = [];
+
+    var myStyle = {
+        "color": "#ff7800",
+        "weight": 5,
+        "opacity": 0.65
+    };
+
+    var edges = [];
     var pointList = json.steps ;
 
     if (!edgePath==null) {
@@ -14,23 +21,17 @@ function display(json) {
     }
 
     for (var i =0; i<pointList.length-1; i++){
-        edge.push(new google.maps.LatLng(pointList[i].lat,pointList[i].lon));
+        edges.push(new L.LatLng(pointList[i].lat,pointList[i].lon));
     }
 
-    var color = "#B50000";
+    map.fitBounds([
+        [pointList[0].lat, pointList[0].lon],
+        [pointList[pointList.length-1].lat, pointList[pointList.length-1].lon]
+    ]);
 
-    edgePath = new google.maps.Polyline({
-        path: edge,
-        strokeColor: color,
-        strokeOpacity: 1.0,
-        strokeWeight: 4
-    });
+    L.polyline(edges, {color: 'red'}).addTo(map);
 
-    edgePath.setMap(map);
-
-    var Center = new google.maps.LatLng(pointList[Math.ceil(pointList.length/2)].lat, pointList[Math.ceil(pointList.length/2)].lon);
-
-    map.setCenter(Center);
+    //map.setCenter(Center);
 }
 
 function submitform()

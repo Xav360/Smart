@@ -6,6 +6,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
 
+    <script type="text/javascript" src="display.js"></script>
     <link rel="stylesheet" href="index.css" />
 
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.css" />
@@ -40,14 +41,36 @@
 
         $('#carte').live('pageshow',function(event, ui){
             initialize();
-            //submitform();
+            submitform();
         });
 
-        function addAdr1() {
-            $("#adr1").val("26, rue pierre louvrier, clamart");
-        };
-        function addAdr2() {
-            $("#adr2").val("8, résidence de la lisière du golf, garches");
+
+        function togglePOI1() {
+            $("#poi1").toggle("fast", "linear", function (data) { });
+        }
+
+        function addAdr1(balise) {
+            if (balise=="Home"){
+                $("#adr1").val("26, rue pierre louvrier, clamart");
+            }
+            else if (balise=="Work") {
+                $("#adr1").val("2, avenue sully prud'homme, sceaux");
+            }
+            togglePOI1()
+        }
+
+        function togglePOI2() {
+            $("#poi2").toggle("fast", "linear", function (data) {});
+        }
+
+        function addAdr2(balise) {
+            if (balise=="Home"){
+                $("#adr2").val("26, rue pierre louvrier, clamart");
+            }
+            else if (balise=="Work"){
+                $("#adr2").val("2, avenue sully prud'homme, sceaux");
+            }
+            togglePOI2()
         };
 
     </script>
@@ -65,17 +88,27 @@
     </div>
 
     <div data-role="fieldcontain" data-type="horizontal">
-        <div data-role="controlgroup" data-type="horizontal" data-inline="true" style="display: inline; width:50%;">
-            <input type="text" name="adr1" id="adr1" value="" placeholder="Adresse de Départ"/>
+        <div data-role="controlgroup" data-type="horizontal" data-inline="true" style="display: inline; margin: 10px;">
+            <input type="text" name="adr1" id="adr1" value="" data-theme="c" placeholder="Adresse de Départ"/>
         </div>
-        <button id="adr1Button"  data-icon="arrow-r" data-inline="true" data-iconpos="notext" data-theme="c" onclick="addAdr1()">plus</button>
+        <input type="button" id="adr1Button"  data-icon="arrow-d" data-inline="true" data-theme="c" value="Add" onclick="togglePOI1()" />
+    </div>
+
+    <div id="poi1" data-role="fieldcontain" style="background-color: #adff2f; display: none">
+        <input type="button" data-inline="true" value="Home" data-theme="c" onclick="addAdr1(this.value)"/>
+        <input type="button" data-inline="true" value="Work" data-theme="c" onclick="addAdr1(this.value)"/>
     </div>
 
     <div data-role="fieldcontain" data-type="horizontal">
-        <div data-role="controlgroup" data-type="horizontal" data-inline="true" style="display: inline; width:50%;">
-            <input type="text" name="adr2" id="adr2" value="" placeholder="Adresse d'Arrivée"/>
+        <div data-role="controlgroup" data-type="horizontal" data-inline="true" style="display: inline; margin: 10px;">
+            <input type="text" name="adr1" id="adr2" value="" data-theme="c" placeholder="Adresse d'Arrivée"/>
         </div>
-        <button id="adr2Button" data-icon="arrow-r" data-inline="true" data-iconpos="notext" data-theme="c" onclick="addAdr2()">plus</button>
+        <input type="button" id="adr2Button"  data-icon="arrow-d" data-inline="true" data-theme="c" value="Add" onclick="togglePOI2()" />
+    </div>
+
+    <div id="poi2" data-role="fieldcontain" style="background-color: #adff2f; display: none">
+        <input type="button" data-inline="true" value="Home" data-theme="c" onclick="addAdr2(this.value)"/>
+        <input type="button" data-inline="true" value="Work" data-theme="c" onclick="addAdr2(this.value)"/>
     </div>
 
     <fieldset id="transportButtons"  data-role="controlgroup" data-type="horizontal">
@@ -87,9 +120,9 @@
         <input type="radio" id="trans_choice_cycle"  name="trans"/>
     </fieldset>
 
-        <div data-role="controlgroup">
-            <a href="map.html" data-role="button" data-icon="" data-transition="flip">Valider</a>
-        </div>
+    <div data-role="controlgroup" id="validateButton">
+        <a href="map.html" data-role="button" data-icon="" data-transition="flip">Search</a>
+    </div>
 </div>
 </body>
 </html>
