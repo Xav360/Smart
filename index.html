@@ -26,12 +26,11 @@
         var userMarker = new L.marker([0,0]);
 
         function successCallback(position){
-            updateMarker(userMarker, position);
-        }
-
-        function updateMarker(userMarker, position) {
-            userMarker.setLatLng(new L.LatLng(position.coords.latitude, position.coords.longitude));
             console.log("Latitude : " + position.coords.latitude + ", longitude : " + position.coords.longitude);
+            if (map) {
+                userMarker.setLatLng(new L.LatLng(position.coords.latitude, position.coords.longitude));
+                map.setView(userMarker.getLatLng(), 8);
+            }
         }
 
         var watchID = navigator.geolocation.watchPosition(successCallback, errorCallback, {enableHighAccuracy:true});
