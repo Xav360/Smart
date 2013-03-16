@@ -39,7 +39,7 @@ function submitform()
 }
 
 function addToUrl(index, point) {
-    var url="http://"+document.getElementById("ip").value+":8080/rest/routing?&lat"+index+"="+point.lat()+"&lon"+index+"="+point.lng();
+    var url="http://"+document.getElementById("ip").value+":8080/smartmobility/rest/routing?&lat"+index+"="+point.lat()+"&lon"+index+"="+point.lng();
     return url;
 }
 

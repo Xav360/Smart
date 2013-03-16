@@ -27,9 +27,9 @@
 
         function successCallback(position){
             console.log("Latitude : " + position.coords.latitude + ", longitude : " + position.coords.longitude);
+            userMarker.setLatLng(new L.LatLng(position.coords.latitude, position.coords.longitude));
             if (map) {
-                userMarker.setLatLng(new L.LatLng(position.coords.latitude, position.coords.longitude));
-                map.setView(userMarker.getLatLng(), 8);
+                map.setView(userMarker.getLatLng(), 10);
             }
         }
 
@@ -97,7 +97,7 @@
     </div><!-- /header -->
 
     <div data-role="fieldcontain">
-        <input type="text" name="ip" id="ip" value="192.168.1.85"  placeholder="ip"/>
+        <input type="text" name="ip" id="ip" value="176.31.126.197"  placeholder="ip"/>
     </div>
 
     <div data-role="fieldcontain" data-type="horizontal">
