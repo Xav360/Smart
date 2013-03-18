@@ -14,15 +14,15 @@ function display(json) {
     $('#travelDistance').text(dist + " km");
 
     var myIconA = L.icon({
-        iconUrl: 'A-position.png',
-        iconRetinaUrl: 'A-position.png',
+        iconUrl: 'image/A-position.png',
+        iconRetinaUrl: 'image/A-position.png',
         iconSize: [33, 40],
         iconAnchor: [16, 40]
     });
 
     var myIconB = L.icon({
-        iconUrl: 'B-position.png',
-        iconRetinaUrl: 'B-position.png',
+        iconUrl: 'image/B-position.png',
+        iconRetinaUrl: 'image/B-position.png',
         iconSize: [33, 40],
         iconAnchor: [16, 40]
     });
@@ -34,8 +34,6 @@ function display(json) {
 
     if (!edgePath==null) {
         edgePath.setMap(null);
-        AMarker=null;
-        BMarker=null;
     }
 
     var BMarker = new L.marker([pointList[0].lat,pointList[0].lon], {icon : myIconB});
@@ -65,46 +63,26 @@ function display(json) {
 
 function submitform()
 {//this check triggers the validations
-    var URL="";
-    codeAddress(URL, $("#adr1").val(), 1, addToUrl);
+    codeAddress($("#adr2").val(), getPath);
 }
 
-function addToUrl(index, point) {
-    var url="http://"+document.getElementById("ip").value+":8080/rest/routing?&lat"+index+"="+point.lat()+"&lon"+index+"="+point.lng();
-    return url;
-}
-
-function redirect(url, index, point){
-    url = url + "&lat"+index+"="+point.lat()+"&lon"+index+"="+point.lng();
-
-    var radios = $('input[name="trans"]');
-    var selectedValue="CAR";
-
-    for(var i = 0; i < radios.length; i++) {
-        if(radios[i].checked) selectedValue = radios[i].value;
-    }
-
-    url = url + "&trans=" + selectedValue;
+function getPath(point){
+   var url="http://192.168.1.85:8080/rest/routing?lat1="+userMarker.getLatLng().lat+"&lon1="+userMarker.getLatLng().lng+"&lat2="+point.lat()+"&lon2="+point.lng();
+    url = url+"&trans=FOOT";
 
     $.getJSON(url, function(json){
         display(json);
-    });
+   });
 }
 
-function codeAddress(URL, address, index, callback) {
+function codeAddress(address, callback) {
     var geocoder = new google.maps.Geocoder();
     geocoder.geocode( { 'address': address}, function(results, status) {
         if (status == google.maps.GeocoderStatus.OK){
-            if(index==1) {
-                var url=callback.call(window, index, results[0].geometry.location);
-                codeAddress(url,$("#adr2").val(),2,redirect);
-            }
-            else {
-                callback.call(window, URL, index, results[0].geometry.location);
-            }
+                callback.call(window, results[0].geometry.location);
         }
         else{
-
+             alert("Adresse incorrecte");
         }
     });
 }
