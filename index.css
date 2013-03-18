@@ -2,6 +2,18 @@
     text-align: center;
 }
 
-#adr1, #adr2{
-    width: 100%;
+#map_canvas {
+    position:absolute;
+    width:90%;
+    height:90%;
 }
+
+.ui-grid-a .ui-block-a { width: 65%; }
+.ui-grid-a .ui-block-b { width: 30%; }
+
+.ui-grid-a .ui-block-b {position: relative; top:-9px;}
+
+.ui-grid-b .ui-block-a { width: 65%;}
+.ui-grid-b .ui-block-b { width: 30%;}
+
+.ui-grid-b .ui-block-b,.ui-block-a { margin-bottom: 20px;}

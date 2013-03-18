@@ -1,8 +1,42 @@
 <style type="text/css">
-
 </style>
 
 <div data-role="page" id="carte">
-    <div id="map_canvas" style="height:800px;" >
+
+    <div data-role="header" data-theme="a" data-position="fixed">
+        <h1>Apercu Trajet</h1>
+        <a href="#nav-panel" data-icon="bars" data-iconpos="notext">Menu</a>
+        <a href="#add-form" data-icon="plus" data-iconpos="notext">Add</a>
     </div>
+
+    <div data-role="content" class="jqm-content">
+        <div id="map_canvas"></div>
+
+        <div style="position:absolute; right:30px; top:40px;">
+            <button onclick="centerMap()"><img src="locate.png" width="20px" height="20px" id="locate" /></button>
+        </div>
+    </div><!-- /content -->
+    <div data-role="panel" data-position-fixed="true" data-theme="a" id="nav-panel">
+        <ul data-role="listview" data-theme="a" class="nav-search">
+            <li data-icon="delete"><a href="#" data-rel="close">Close</a></li>
+            <li><a href="#panel-fixed-page2">Plus Rapide</a></li>
+            <li><a href="#panel-fixed-page2">Moins Cher</a></li>
+            <li><a href="#panel-fixed-page2">Moins de Changement</a></li>
+        </ul>
+    </div><!-- /panel -->
+
+    <div data-role="panel" data-position="right" data-position-fixed="true" data-display="overlay" data-theme="b" id="add-form">
+            <h2>Infos</h2>
+            <div class="ui-grid-b">
+                <div class="ui-block-a"><span>Temps :</span></div>
+                <div class="ui-block-b"><span id="travelTime" style="font-size: 20px;font-weight: bold;"></span></div>
+                <div class="ui-block-a"><span>Distance :</span></div>
+                <div class="ui-block-b"><span id="travelDistance" style="font-size: 20px;font-weight: bold;"></span></div>
+                <div class="ui-block-a"><span>Prix :</span></div>
+                <div class="ui-block-b"><span id="travelPrice" style="font-size: 20px;font-weight: bold;"></span></div>
+            </div>
+            <div class="ui-grid-solo">
+                <div class="ui-block-a"><a href="#" data-rel="close" data-role="button" data-theme="c">Close</a></div>
+            </div>
+    </div><!-- /panel -->
 </div>
