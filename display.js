@@ -8,7 +8,6 @@ var edgePath;
 function display(json) {
 
     var min = Math.floor(json.travelInfo.time/60);
-    var hour = json.travelInfo.time/60;
     var dist = Math.floor(json.travelInfo.distance/1000);
 
     $('#travelTime').text(min + " min");
@@ -71,7 +70,7 @@ function submitform()
 }
 
 function addToUrl(index, point) {
-    var url="http://"+document.getElementById("ip").value+":8080/smartmobility/rest/routing?&lat"+index+"="+point.lat()+"&lon"+index+"="+point.lng();
+    var url="http://"+document.getElementById("ip").value+":8080/rest/routing?&lat"+index+"="+point.lat()+"&lon"+index+"="+point.lng();
     return url;
 }
 
@@ -109,10 +108,3 @@ function codeAddress(URL, address, index, callback) {
         }
     });
 }
-/**
- * Created with IntelliJ IDEA.
- * User: Pouille
- * Date: 11/03/13
- * Time: 14:45
- * To change this template use File | Settings | File Templates.
- */
