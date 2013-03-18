@@ -77,11 +77,8 @@
             if (balise=="Home"){
                 $("#adr1").val("26, rue pierre louvrier, clamart");
             }
-             if (balise=="Work") {
+            else if (balise=="Work") {
                 $("#adr1").val("2, avenue sully prud'homme, sceaux");
-            }
-            else if (balise=="Ma position") {
-                $("#adr1").val("Ma position");
             }
             togglePOI1()
         }
@@ -128,7 +125,6 @@
     <div id="poi1" data-role="fieldcontain" style="background-color: #adff2f; display: none">
         <input type="button" data-inline="true" value="Home" data-theme="c" onclick="addAdr1(this.value)"/>
         <input type="button" data-inline="true" value="Work" data-theme="c" onclick="addAdr1(this.value)"/>
-        <input type="button" data-inline="true" value="Ma position" data-theme="c" onclick="addAdr1(this.value)"/>
     </div>
 
     <div data-role="fieldcontain" style="margin-left: 10px;">
