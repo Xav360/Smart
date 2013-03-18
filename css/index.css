@@ -1,5 +1,5 @@
-#transportButtons {
-    text-align: center;
+#accueil {
+    background : -webkit-radial-gradient(center center, #FFFFFF 0%, #A5A5A5 100%);
 }
 
 #map_canvas {
@@ -23,4 +23,4 @@
 .ui-grid-b .ui-block-a { width: 65%;}
 .ui-grid-b .ui-block-b { width: 30%;}
 
-.ui-grid-b .ui-block-b,.ui-block-a { margin-bottom: 20px;}
+.ui-grid-b .ui-block-b { margin-bottom: 20px;}

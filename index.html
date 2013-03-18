@@ -103,21 +103,6 @@
         </div>
     </div>
 
-    <div data-role="footer" class="ui-grid-c" data-position="fixed" style="height:60px; text-align: center;">
-            <div class="ui-block-a" >
-                <a href="#positionWindow" data-rel="popup" data-icon="star" data-role="button" style="height:30px;">Favoris</a>
-            </div>
-            <div class="ui-block-b">
-                <a href="" data-role="button" data-icon="home" style="height:30px;">Facebook</a>
-            </div>
-            <div class="ui-block-c">
-                <a href="" data-role="button" data-icon="search" style="height:30px;">Recent</a>
-            </div>
-            <div class="ui-block-d">
-                <a href="" data-role="button" data-icon="search" style="height:30px;">POI</a>
-            </div>
-    </div>
-
     <div data-role="popup" class="ui-content" id="positionWindow">
         <a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-left">Close</a>
         <ul data-role="listview" data-theme="d">
@@ -127,9 +112,31 @@
         </ul>
     </div>
 
-    <div id="poi2" data-role="fieldcontain" style="background-color: #FF8400; display: none">
-        <input type="button" data-inline="true" value="Home" data-theme="c" onclick="addAdr2(this.value)"/>
-        <input type="button" data-inline="true" value="Work" data-theme="c" onclick="addAdr2(this.value)"/>
+    <div data-role="footer" data-position="fixed">
+        <div data-role="navbar" role="navigation" data-icon="top">
+            <ul>
+                <li>
+                    <a href="#positionWindow" data-rel="popup" data-icon="star">
+                       Favoris
+                    </a>
+                </li>
+                <li>
+                    <a href="" data-role="button" data-icon="home" >
+                        Facebook
+                    </a>
+                </li>
+                <li>
+                    <a href="" data-role="button" data-icon="search" >
+                        Recent
+                    </a>
+                </li>
+                <li>
+                    <a href="" data-role="button" data-icon="search" >
+                        POI
+                    </a>
+                </li>
+            </ul>
+        </div>
     </div>
 </div>
 </body>

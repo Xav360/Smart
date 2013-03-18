@@ -67,7 +67,7 @@ function submitform()
 }
 
 function getPath(point){
-   var url="http://192.168.1.85:8080/rest/routing?lat1="+userMarker.getLatLng().lat+"&lon1="+userMarker.getLatLng().lng+"&lat2="+point.lat()+"&lon2="+point.lng();
+   var url="http://127.0.0.1:8080/rest/routing?lat1="+userMarker.getLatLng().lat+"&lon1="+userMarker.getLatLng().lng+"&lat2="+point.lat()+"&lon2="+point.lng();
     url = url+"&trans=FOOT";
 
     $.getJSON(url, function(json){
