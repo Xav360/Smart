@@ -7,92 +7,32 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
 
-    <script type="text/javascript" src="js/watchPosition.js"></script>
-    <script type="text/javascript" src="js/display.js"></script>
-
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.css" />
-    <script src="http://cdn.leafletjs.com/leaflet-0.5/leaflet.js"></script>
+    <script type="text/javascript" src="http://cdn.leafletjs.com/leaflet-0.5/leaflet.js"></script>
 
     <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.0/jquery.mobile-1.3.0.min.css" />
-    <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
-    <script src="js/jquery.mobile-1.3.0.min.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="js/jquery.mobile-1.3.0.min.js"></script>
 
     <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAFRibImU7l2cmjIPF4S0yJ8r7YkxLeOHA&sensor=true"></script>
 
     <link rel="stylesheet" href="css/index.css" />
-
-    <script type="text/javascript">
-        var map;
-
-        var myIcon = L.icon({
-            iconUrl: 'image/position-marker.png',
-            iconRetinaUrl: 'image/position-marker.png',
-            iconSize: [15, 15]
-        });
-
-        var userMarker = new L.marker([0,0], {icon : myIcon});
-
-        function successCallback(position){
-            console.log("Latitude : " + position.coords.latitude + ", longitude : " + position.coords.longitude);
-            userMarker.setLatLng(new L.LatLng(position.coords.latitude, position.coords.longitude));
-        }
-
-        function centerMap() {
-            map.setView(userMarker.getLatLng(), 15);
-        }
-
-        var watchID = navigator.geolocation.watchPosition(successCallback, errorCallback, {frequency:1000, enableHighAccuracy:true});
-
-        function initialize() {
-
-            map = new L.Map('map_canvas');
-
-            // create the tile layer with correct attribution
-            var mapquestUrl = 'http://{s}.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png';
-            var subDomains = ['otile1','otile2','otile3','otile4'];
-            var mapquestAttrib = '';
-            var mapquest = new L.TileLayer(mapquestUrl, {maxZoom: 18, attribution: mapquestAttrib, subdomains: subDomains});
-
-            map.setView(new L.LatLng(47.3, 2.47),8);
-
-            userMarker.addTo(map);
-
-            map.addLayer(mapquest);
-        }
-
-        $('#carte').live('pageshow',function(event, ui){
-            initialize();
-            submitform();
-        });
-
-        function togglePOI2() {
-            $("#poi2").toggle("fast", "linear", function (data) {});
-        }
-
-        function addAdr2(balise) {
-            if (balise=="Maison"){
-                $("#adr2").val("26, rue pierre louvrier, clamart");
-            }
-            else if (balise=="Travail"){
-                $("#adr2").val("2, avenue sully prud'homme, sceaux");
-            }
-        }
-
-    </script>
-
+    <script type="text/javascript" src="js/watchPosition.js"></script>
+    <script type="text/javascript" src="js/display.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
 </head>
 <body>
 
 <div data-role="page" data-theme="b" id="accueil">
-
-    <select name="car_check" id="car_check" data-role="slider" data-track-theme="a" data-theme="a">
+    <div style="margin:10px;">
+    <select name="car_check" id="car_check" data-role="slider" data-track-theme="a" data-theme="a" >
         <option value="off">Car</option>
         <option value="on">Foot</option>
     </select>
-
+    </div>
     <img id="noomad" src="image/noomad.png"/>
 
-    <div data-role="fieldcontain" style="margin-left: 10px;">
+    <div data-role="fieldcontain" style="margin:auto; margin-left: 10px;">
         <div class="ui-grid-a">
             <div class="ui-block-a">
                 <input type="search" style="width:300px;" name="adr2" id="adr2" value="" data-theme="a" placeholder="Où souhaitez-vous aller ?"/>
@@ -103,6 +43,16 @@
         </div>
     </div>
 
+    <div data-role="footer" class="nav-glyphish-example" data-position="fixed">
+        <div data-role="navbar" class="nav-glyphish-example" data-grid="c">
+            <ul>
+                <li><a href="#positionWindow" data-rel="popup" id="favorite" data-theme="d" data-icon="favorite">Chat</a></li>
+                <li><a href="#friendsWindow" data-rel="popup" id="social" data-theme="d"  data-icon="custom">Facebook</a></li>
+                <li><a href="#" id="recent"  data-theme="d"  data-icon="custom">Recent</a></li>
+                <li><a href="#" id="poi" data-theme="d" data-icon="custom">Alentour</a></li>
+            </ul>
+        </div>
+    </div>
     <div data-role="popup" class="ui-content" id="positionWindow">
         <a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-left">Close</a>
         <ul data-role="listview" data-theme="d">
@@ -111,34 +61,16 @@
             <li><a data-rel="back" onclick="addAdr2(this.text)">ECP</a></li>
         </ul>
     </div>
-
-    <div data-role="footer" data-position="fixed">
-        <div data-role="navbar" role="navigation" data-icon="top">
-            <ul>
-                <li>
-                    <a href="#positionWindow" data-rel="popup" data-icon="star">
-                       Favoris
-                    </a>
-                </li>
-                <li>
-                    <a href="" data-role="button" data-icon="home" >
-                        Facebook
-                    </a>
-                </li>
-                <li>
-                    <a href="" data-role="button" data-icon="search" >
-                        Recent
-                    </a>
-                </li>
-                <li>
-                    <a href="" data-role="button" data-icon="search" >
-                        POI
-                    </a>
-                </li>
-            </ul>
-        </div>
+    <div data-role="popup" class="ui-content" id="friendsWindow">
+        <a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-left">Close</a>
+        <ul data-role="listview" data-theme="d">
+            <li><a data-rel="back" onclick="addAdr2(this.text)">Victor</a></li>
+            <li><a data-rel="back" onclick="addAdr2(this.text)">Karl</a></li>
+            <li><a data-rel="back" onclick="addAdr2(this.text)">Gégé</a></li>
+        </ul>
     </div>
 </div>
 </body>
 </html>
+
 

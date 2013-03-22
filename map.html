@@ -1,9 +1,6 @@
-<style type="text/css">
-</style>
-
 <div data-role="page" id="carte">
 
-    <div data-role="header" data-theme="a">
+    <div data-role="header" data-theme="a" data-position="fixed">
         <h1>Apercu Trajet</h1>
         <a href="#nav-panel" data-icon="bars" data-iconpos="notext">Menu</a>
         <a href="#add-form" data-icon="plus" data-iconpos="notext">Add</a>
@@ -13,15 +10,19 @@
         <div id="map_canvas"></div>
 
         <div style="position:absolute; right:30px; top:40px;">
-            <button onclick="centerMap()"><img src="image/locate.png" width="15px" height="15px" id="locate" /></button>
+            <button onclick="centerMap();"><img src="image/locate.png" width="15px" height="15px" id="locate" /></button>
+        </div>
+        <div style="position:absolute; right:100px; top:40px;">
+            <button onclick="postCovoitOffer();"><img src="image/icon/56-cloud.png" width="25px" height="20px" id="postPath" /></button>
         </div>
     </div><!-- /content -->
+
     <div data-role="panel" data-position-fixed="true" data-theme="a" id="nav-panel">
         <ul data-role="listview" data-theme="a" class="nav-search">
             <li data-icon="delete"><a href="#" data-rel="close">Close</a></li>
-            <li><a href="">Plus Rapide</a></li>
-            <li><a href="">Moins Cher</a></li>
-            <li><a href="">Moins de Changement</a></li>
+            <li><a href="">Etape 1</a></li>
+            <li><a href="">Etape 2</a></li>
+            <li><a href="">Etape 3</a></li>
         </ul>
     </div><!-- /panel -->
 
@@ -32,8 +33,6 @@
                 <div class="ui-block-b"><span id="travelTime" style="font-size: 20px;font-weight: bold;"></span></div>
                 <div class="ui-block-a"><span>Distance :</span></div>
                 <div class="ui-block-b"><span id="travelDistance" style="font-size: 20px;font-weight: bold;"></span></div>
-                <div class="ui-block-a"><span>Prix :</span></div>
-                <div class="ui-block-b"><span id="travelPrice" style="font-size: 20px;font-weight: bold;"></span></div>
             </div>
             <div class="ui-grid-solo">
                 <div class="ui-block-a"><a href="#" data-rel="close" data-role="button" data-theme="c">Close</a></div>
