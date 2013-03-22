@@ -128,7 +128,7 @@ function postCovoitOffer(){
 
         $.mobile.showPageLoadingMsg("a" ,"Envoi du trajet au serveur...");
 
-        $.post("http://127.0.0.1:8080/smartmobility/rest/carpoule", {json: JSON.stringify(JsonToSend) },
+        $.post("http://176.31.126.197:8080/smartmobility/rest/carpoule", {json: JSON.stringify(JsonToSend) },
             function(data){
                 $.mobile.hidePageLoadingMsg("a" ,"Envoi du trajet dans le cloud...");
             }, "json");
