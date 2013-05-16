@@ -4,10 +4,12 @@
 
 var map;
 var edgePath;
+var ip = "176.31.126.197";
+//var ip = "127.0.0.1";
 
 function display(json) {
     $.mobile.hidePageLoadingMsg("a" ,"Itinéraire en cours de calcul...");
-    if (json.statut="ok") {
+    if (json.status=200) {
 
         var min = Math.floor(json.travelInfo.time/60000);
         var dist = Math.floor(json.travelInfo.distance/1000);
@@ -75,7 +77,7 @@ function display(json) {
         ]);
     }
     else {
-        alert("Le chemin n'a pas été trouvé");
+        alert(json.message);
     }
 }
 
@@ -86,7 +88,7 @@ function submitform()
 
 function getPath(point){
     //176.31.126.197
-   var url="http://176.31.126.197:8080/smartmobility/rest/routing?lat1="+userMarker.getLatLng().lat+"&lon1="+userMarker.getLatLng().lng+"&lat2="+point.lat()+"&lon2="+point.lng();
+   var url="http://"+ip+":8080/smartmobility/rest/routing?lat1="+userMarker.getLatLng().lat+"&lon1="+userMarker.getLatLng().lng+"&lat2="+point.lat()+"&lon2="+point.lng();
     var trans;
     if ($('a[aria-valuetext]').attr("aria-valuetext")=="Car") {
        trans = "CAR";

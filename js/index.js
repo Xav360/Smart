@@ -55,11 +55,11 @@ function addAdr2(balise) {
     if (balise=="Maison"){
         $("#adr2").val("26, rue pierre louvrier, clamart");
     }
-    else if (balise=="ECP"){
-        $("#adr2").val("2, avenue sully prud'homme, sceaux");
+    else if (balise=="Paradis"){
+        $("#adr2").val("5 rue des champs, Chatenay-Malabry");
     }
-    else if (balise=="Travail"){
-        $("#adr2").val("10, Rue Houdan, chatenay-Malabry");
+    else if (balise=="Ile-aux-enfants"){
+        $("#adr2").val("10 rue d'alsace lorraine, Sceaux");
     }
 }
 
@@ -128,7 +128,7 @@ function postCovoitOffer(){
 
         $.mobile.showPageLoadingMsg("a" ,"Envoi du trajet au serveur...");
 
-        $.post("http://176.31.126.197:8080/smartmobility/rest/carpoule", {json: JSON.stringify(JsonToSend) },
+        $.post("http://"+ip+":8080/smartmobility/rest/carpoule", {json: JSON.stringify(JsonToSend) },
             function(data){
                 $.mobile.hidePageLoadingMsg("a" ,"Envoi du trajet dans le cloud...");
             }, "json");
