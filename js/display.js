@@ -88,7 +88,10 @@ function submitform()
 
 function getPath(point){
     //176.31.126.197
-   var url="http://"+ip+":8080/smartmobility/rest/routing?lat1="+userMarker.getLatLng().lat+"&lon1="+userMarker.getLatLng().lng+"&lat2="+point.lat()+"&lon2="+point.lng();
+    var url="http://"+ip+":8080/smartmobility/rest/routing?" +
+        //"lat1="+userMarker.getLatLng().lat+"&lon1="+userMarker.getLatLng().lng+
+        "lat1=48.771896&lon1=2.270748000000026"+
+        "&lat2="+point.lat()+"&lon2="+point.lng();
     var trans;
     if ($('a[aria-valuetext]').attr("aria-valuetext")=="Car") {
        trans = "CAR";

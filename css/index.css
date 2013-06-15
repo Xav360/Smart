@@ -10,9 +10,12 @@
     left: 0px;
 }
 
-#noomad{
+#logo{
     display:block;
     margin:auto;
+    height:30%;
+    width:30%;
+    margin-bottom: 10px;
 }
 
 .ui-grid-a .ui-block-a { width: 75%; }
